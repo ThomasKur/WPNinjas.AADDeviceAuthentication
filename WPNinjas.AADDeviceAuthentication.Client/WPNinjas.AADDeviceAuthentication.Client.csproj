@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WPNinjas.Dsregcmd" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WPNinjas.AADDeviceAuthentication.Common\WPNinjas.AADDeviceAuthentication.Common.csproj" />
+  </ItemGroup>
+
+</Project>

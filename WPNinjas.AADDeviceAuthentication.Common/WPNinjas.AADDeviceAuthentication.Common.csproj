@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+      <Authors>Thomas Kurth</Authors>
+    <Description>This simple library allows to use device based authentication in an Azure AD based environment via certificate. With this you can for example ensure that a specific device has sent inventory data or other information to a webservice.
+
+I developed this helper library because I had this requirement already multiple times and nobody had a solution. Especially this was created to support CloudLAPS https://github.com/MSEndpointMgr/CloudLAPS</Description>
+    <Product>WPNinjas Azure AD Device Authentication</Product>
+    <Company>WPNinjas</Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>WPNinjasLogoBig.png</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/ThomasKur/WPNinjas.AADDeviceAuthentication</RepositoryUrl>
+    <RepositoryType>Github</RepositoryType>
+    <PackageTags>Windows, AzureAD, Security, Authentication, Device Authentic&lt;ation</PackageTags>
+    <PackageReleaseNotes>1.0.0 - Initial Version
+- Basic functionality to authenticate a device</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\WPNinjasLogoBig.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WPNinjas.Dsregcmd" Version="1.0.1" />
+  </ItemGroup>
+
+</Project>
