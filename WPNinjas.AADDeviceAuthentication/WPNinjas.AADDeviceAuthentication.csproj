@@ -1,13 +1,38 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Thomas Kurth</Authors>
+    <Company>WPNinjas</Company>
+    <Product>WPNinjas AADDeviceAuthentication</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/ThomasKur/WPNinjas.AADDeviceAuthentication</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ThomasKur/WPNinjas.AADDeviceAuthentication</RepositoryUrl>
+    <PackageIcon>WPNinjasLogoBig.png</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryType>Github</RepositoryType>
+    <PackageTags>AzureAD</PackageTags>
+    <PackageReleaseNotes>1.0.0 - Initial Version
+- Basic functionality to Authenticate Devices</PackageReleaseNotes>
+    <Description>When creating solutions in Endpoint Management it's often the case that you need to execute scripts in SYSTEM context and submit data to a webservice. As loing the devices are Active Directory Joined or Azure Active Directory Hybrid JOined this is not an issue as the computer itself has an identity (Computer object) which includes a password and therefore can authenticate and identitfy to another system. With the usage of Azure AD the system is no longer an identity and therfore it's problematic, but in the background each device gets a unique certificate from Azure AD and the public key is stored in Azure AD withtin the AlternativeSecurityIds property. Jairo Cadena has written a very [detailed Blog](https://jairocadena.com/2016/02/01/azure-ad-join-what-happens-behind-the-scenes/) about this process and I can only recommend to read it. 
+
+My solution provides a simple to use client library and server library which allows you to really identify and proof the source of a request.</Description>
+    <Copyright>Copyright Thomas Kurth</Copyright>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Graph" Version="4.17.0" />
+    <PackageReference Include="System.Security.Principal.Windows" Version="5.0.0" />
     <PackageReference Include="WPNinjas.Dsregcmd" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\WPNinjasLogoBig.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

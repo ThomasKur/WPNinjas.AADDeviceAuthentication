@@ -32,9 +32,14 @@ namespace WPNinjas.AADDeviceAuthentication.Examples
         static string ClientSide()
         {
             AADDeviceAuthClient client = new AADDeviceAuthClient();
+
+            // Get Token, recommended to all of the date you plan to submit to the server or at least
+            // the important part to ensure it was not modified.
             DeviceAuthToken token = client.GetToken("Test123");
 
-            // Now we can send the token as part of the body to the WebServer, in this example we will just return it to the Main Program
+            // Now we can send the token as part of the body to the WebServer, in this example we will
+            // just return it to the Main Program
+
             // RestClient rc = new RestClient("https://localhost");
             // var request = new RestRequest("inventory") { Method = Method.Post };
             // request.AddJsonBody(token);

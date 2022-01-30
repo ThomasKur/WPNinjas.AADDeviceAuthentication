@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Principal;
 using System.Text;
 using WPNinjas.AADDeviceAuthentication.Common;
 using WPNinjas.Dsregcmd;
@@ -14,7 +15,15 @@ namespace WPNinjas.AADDeviceAuthentication.Client
         private X509Certificate2 AadCert;
         public AADDeviceAuthClient()
         {
-            System.Console.WriteLine("Load AAD Join Info");
+            bool isElevated;
+            using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
+            {
+                WindowsPrincipal principal = new WindowsPrincipal(identity);
+                isElevated = principal.IsInRole(WindowsBuiltInRole.Administrator);
+            }
+            if (!isElevated)
+                throw new Exception("Not executed as Administrator. Please start PowerShell with Administrative Privileges.");
+
             var DsregcmdStatus = Dsregcmd.Dsregcmd.GetInfo();
 
             Initialize(GetMostReliableCert(DsregcmdStatus), DsregcmdStatus.DeviceId);
@@ -53,7 +62,7 @@ namespace WPNinjas.AADDeviceAuthentication.Client
         }
         private X509Certificate2 GetMostReliableCert(DsregcmdResult dsreg)
         {
-            System.Console.WriteLine("Load AAD Join Cert");
+
             X509Certificate2 cert = null;
             if (!(dsreg.CertInfo is null) && dsreg.CertInfo.Count > 0)
             {
