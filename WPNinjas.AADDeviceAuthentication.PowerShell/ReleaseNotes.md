@@ -1,6 +1,5 @@
 # Release Notes
 
-## 1.0.0 - 13.06.2021 - Thomas Kurth
+## 1.0.0 - 30.01.2022 - Thomas Kurth
 
 - Initial Version
-- Generate passwords

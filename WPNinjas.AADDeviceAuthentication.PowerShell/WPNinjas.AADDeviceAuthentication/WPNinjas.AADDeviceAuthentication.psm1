@@ -16,9 +16,17 @@ ForEach ($folder in $functionFolders) {
          Write-Warning "Path $folderPath not found. Some parts of the module will not work."
     }
 }
+Write-Verbose -Message "Importing WPNinjas.DSRegCmd.dll"
+try{
+Add-Type -Path "$PSScriptRoot\WPNinjas.DSRegCmd.dll"
+} catch {
+    Write-Error $_.Message
+}
+
 Write-Verbose -Message "Importing WPNinjas.AADDeviceAuthentication.dll"
 try{
 Add-Type -Path "$PSScriptRoot\WPNinjas.AADDeviceAuthentication.dll"
 } catch {
     Write-Error $_.Message
 }
+
