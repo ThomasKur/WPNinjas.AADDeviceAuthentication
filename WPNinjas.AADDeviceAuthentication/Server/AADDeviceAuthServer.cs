@@ -1,6 +1,7 @@
 ﻿using Microsoft.Graph;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -30,7 +31,7 @@ namespace WPNinjas.AADDeviceAuthentication.Server
             string validSecid = "";
             foreach (var secId in device.AlternativeSecurityIds)
             {
-                var SecIdString = System.Text.Encoding.UTF8.GetString(secId.Key);
+                var SecIdString = BytesToStringConverted(secId.Key).Replace("\0","");
                 if (SecIdString.Contains(token.CertThumbprint))
                 {
                     validSecid = SecIdString;
@@ -38,6 +39,16 @@ namespace WPNinjas.AADDeviceAuthentication.Server
                 
             }
             return CryptoService.Verify(pubKey,token.CertThumbprint, validSecid, token.Content + token.DeviceId.ToString(),token.Signature);
+        }
+        private string BytesToStringConverted(byte[] bytes)
+        {
+            using (var stream = new MemoryStream(bytes))
+            {
+                using (var streamReader = new StreamReader(stream))
+                {
+                    return streamReader.ReadToEnd();
+                }
+            }
         }
     }
 }

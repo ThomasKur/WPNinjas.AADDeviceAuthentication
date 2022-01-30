@@ -16,7 +16,8 @@ namespace WPNinjas.AADDeviceAuthentication.Server
         }
         public async Task<Device> GetDevice(Guid id)
         {
-            return await _graphServiceClient.Devices[id.ToString()].Request().GetAsync();
+            var result = await _graphServiceClient.Devices.Request().Filter("deviceId eq '" + id.ToString()+"'").Top(1).GetAsync();
+            return result.CurrentPage.First();
         }
     }
 }
