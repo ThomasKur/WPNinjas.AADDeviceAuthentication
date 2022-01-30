@@ -1,6 +1,6 @@
-﻿$ModulePath = ".\WPNinjas.PasswordGeneration"
-$Icon = "https://raw.githubusercontent.com/ThomasKur/WPNinjas.PasswordGeneration/main/WPNinjasLogoBig.png"
-$License = "https://github.com/ThomasKur/WPNinjas.PasswordGeneration/blob/main/LICENSE"
+﻿$ModulePath = ".\WPNinjas.AADDeviceAuthentication"
+$Icon = "https://raw.githubusercontent.com/ThomasKur/WPNinjas.AADDeviceAuthentication/main/WPNinjasLogoBig.png"
+$License = "https://github.com/ThomasKur/WPNinjas.AADDeviceAuthentication/blob/main/LICENSE"
 #region UI 
 $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes","Description."
 $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No","Description."
@@ -39,7 +39,7 @@ $ReleaseNotes = ((Get-Content ".\ReleaseNotes.md" -Raw) -split "##")
 $ReleaseNote = ($ReleaseNotes[1] + "`n`n To see the complete history, checkout the Release Notes on Github")
 
 #Update Version
-$ModuelManifestTest = Test-ModuleManifest -Path "$ModulePath\WPNinjas.PasswordGeneration.psd1" -ErrorAction Stop
+$ModuelManifestTest = Test-ModuleManifest -Path "$ModulePath\WPNinjas.AADDeviceAuthentication.psd1" -ErrorAction Stop
 $CurrentVersion = $ModuelManifestTest.Version
 $SuggestedNewVersion = [Version]::new($CurrentVersion.Major,$CurrentVersion.Minor,$CurrentVersion.Build + 1)
 $title = "Increment Version" 
@@ -48,7 +48,7 @@ $result = $host.ui.PromptForChoice($title, $message, $options, 1)
 switch ($result) {
     0{
         Write-Information "You selected yes to increase the version. Updating Manifest..."
-        Update-ModuleManifest -Path "$ModulePath\WPNinjas.PasswordGeneration.psd1" `
+        Update-ModuleManifest -Path "$ModulePath\WPNinjas.AADDeviceAuthentication.psd1" `
             -FunctionsToExport $ExportableFunctions `
             -ReleaseNotes $ReleaseNote `
             -IconUri $Icon `
@@ -56,7 +56,7 @@ switch ($result) {
     }
     1{
         Write-Host "You selected no. The version will not be increased."
-        Update-ModuleManifest -Path "$ModulePath\WPNinjas.PasswordGeneration.psd1" `
+        Update-ModuleManifest -Path "$ModulePath\WPNinjas.AADDeviceAuthentication.psd1" `
             -FunctionsToExport $ExportableFunctions `
             -ReleaseNotes $ReleaseNote `
             -IconUri $Icon `
@@ -66,16 +66,16 @@ switch ($result) {
         Write-Error "Canceled Publishing Process" -ErrorAction Stop
     }
 }
-Test-ModuleManifest -Path "$ModulePath\WPNinjas.PasswordGeneration.psd1" -ErrorAction Stop
+Test-ModuleManifest -Path "$ModulePath\WPNinjas.AADDeviceAuthentication.psd1" -ErrorAction Stop
 #endregion
 
 #region Sign Scripts
     Copy-Item -Path $ModulePath -Destination $env:TEMP -Recurse -Force
     $cert = get-item Cert:\CurrentUser\My\* -CodeSigningCert | Out-GridView -OutputMode Single
-    $PSFiles = Get-ChildItem -Path $env:TEMP\WPNinjas.PasswordGeneration -Recurse | Where-Object {$_.Extension -eq ".ps1" -or $_.Extension -eq ".psm1"}
+    $PSFiles = Get-ChildItem -Path $env:TEMP\WPNinjas.AADDeviceAuthentication -Recurse | Where-Object {$_.Extension -eq ".ps1" -or $_.Extension -eq ".psm1"}
     foreach($PSFile in $PSFiles){
         Set-AuthenticodeSignature -Certificate $cert -TimestampServer http://timestamp.verisign.com/scripts/timstamp.dll -FilePath ($PSFile.FullName) -Verbose
     }
 #endregion
 $PSGallerAPIKey = Read-Host "Insert PSGallery API Key"
-Publish-Module -Path $env:TEMP\WPNinjas.PasswordGeneration -NuGetApiKey $PSGallerAPIKey -IconUri $Icon -LicenseUri $License -Verbose
+Publish-Module -Path $env:TEMP\WPNinjas.AADDeviceAuthentication -NuGetApiKey $PSGallerAPIKey -IconUri $Icon -LicenseUri $License -Verbose

@@ -16,9 +16,9 @@ ForEach ($folder in $functionFolders) {
          Write-Warning "Path $folderPath not found. Some parts of the module will not work."
     }
 }
-Write-Verbose -Message "Importing WPNinjas.PasswordGeneration.dll"
+Write-Verbose -Message "Importing WPNinjas.AADDeviceAuthentication.dll"
 try{
-Add-Type -Path "$PSScriptRoot\WPNinjas.PasswordGeneration.dll"
+Add-Type -Path "$PSScriptRoot\WPNinjas.AADDeviceAuthentication.dll"
 } catch {
     Write-Error $_.Message
 }

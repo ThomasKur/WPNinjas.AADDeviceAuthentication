@@ -38,9 +38,9 @@ function Write-Log {
     )
     $LogFilePathFolder     = Join-Path -Path $Env:TEMP -ChildPath $ScriptName
     $OutputMode  = "Console" # "Console-LogFile","Console-WindowsEvent","LogFile-WindowsEvent","Console","LogFile","WindowsEvent","All"
-    $DefaultLogWindowsEventSource = "IntuneDocumentation"
+    $DefaultLogWindowsEventSource = "WPNinjas.AADDeviceAuthentication"
     $DefaultLogWindowsEventLog = "CustomPS"
-    $LogFilePath = "$LogFilePathFolder\IntuneDocumentation_$(Get-Date -uformat %Y%m%d%H%M).log"
+    $LogFilePath = "$LogFilePathFolder\WPNinjas.AADDeviceAuthentication_$(Get-Date -uformat %Y%m%d%H%M).log"
     $DateTimeString = Get-Date -Format "yyyy-MM-dd HH:mm:sszz"
     $Output = ($DateTimeString + "`t" + $Type.ToUpper() + "`t" + $Message)
     if($Exception){
