@@ -26,7 +26,7 @@ switch ($result) {
 #region Code Analyzer
 Import-Module -Name PSScriptAnalyzer -Force
 $ScriptAnalyzerResult = Invoke-ScriptAnalyzer -Path $ModulePath -Recurse -ErrorAction Stop -ExcludeRule @("PSAvoidTrailingWhitespace")
-
+5
 if($ScriptAnalyzerResult){
     $ScriptAnalyzerResult
     Write-Error "Scripts contains errors. PSScriptAnalyzer provided results above."
