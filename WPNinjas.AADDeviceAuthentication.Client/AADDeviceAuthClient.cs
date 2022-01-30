@@ -10,17 +10,29 @@ namespace WPNinjas.AADDeviceAuthentication
 {
     public class AADDeviceAuthClient
     {
-        private DsregcmdResult DsregcmdStatus;
+        private Guid DeviceId;
         private X509Certificate2 AadCert;
         public AADDeviceAuthClient()
         {
-            DsregcmdStatus = Dsregcmd.Dsregcmd.GetInfo();
-            if (DsregcmdStatus.DeviceId == default)
+            System.Console.WriteLine("Load AAD Join Info");
+            var DsregcmdStatus = Dsregcmd.Dsregcmd.GetInfo();
+
+            Initialize(GetMostReliableCert(DsregcmdStatus), DsregcmdStatus.DeviceId);
+            
+        }
+        public AADDeviceAuthClient(X509Certificate2 aadCert,Guid deviceId)
+        {
+            Initialize(aadCert, deviceId);
+        }
+        private void Initialize(X509Certificate2 aadCert, Guid deviceId)
+        {
+            AadCert = aadCert;
+            DeviceId = deviceId;
+            if (DeviceId == default)
             {
                 throw new Exception("No Azure AD device id found. Check with dsregcmd if the device is joined to domain.");
             }
-            System.Console.WriteLine("Load AAD Join Info");
-            AadCert = GetMostReliableCert(DsregcmdStatus);
+
             if (AadCert == null)
             {
                 throw new Exception("No certificate found which can be used for authentication.");
@@ -29,10 +41,10 @@ namespace WPNinjas.AADDeviceAuthentication
         public DeviceAuthToken GetToken(string signaturestring)
         {
             byte[] pubkey = AadCert.GetPublicKey();
-            string signature = CryptoService.Sign(AadCert.GetRSAPrivateKey(), signaturestring);
+            string signature = CryptoService.Sign(AadCert.GetRSAPrivateKey(), signaturestring+ DeviceId.ToString());
             string bPubKey = Convert.ToBase64String(pubkey);
             
-            return new DeviceAuthToken { CertThumbprint = AadCert.Thumbprint, Signature = signature, PublicKey = bPubKey, DeviceId = DsregcmdStatus.DeviceId };
+            return new DeviceAuthToken { CertThumbprint = AadCert.Thumbprint, Signature = signature, PublicKey = bPubKey, DeviceId = DeviceId, Content = signaturestring };
         }
 
         public string Decrypt(string EncryptedText)
@@ -41,7 +53,7 @@ namespace WPNinjas.AADDeviceAuthentication
         }
         private X509Certificate2 GetMostReliableCert(DsregcmdResult dsreg)
         {
-
+            System.Console.WriteLine("Load AAD Join Cert");
             X509Certificate2 cert = null;
             if (!(dsreg.CertInfo is null) && dsreg.CertInfo.Count > 0)
             {
