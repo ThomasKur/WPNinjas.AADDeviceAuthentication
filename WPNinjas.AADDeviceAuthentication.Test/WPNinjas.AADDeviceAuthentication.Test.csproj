@@ -16,9 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WPNinjas.AADDeviceAuthentication.Client\WPNinjas.AADDeviceAuthentication.Client.csproj" />
-    <ProjectReference Include="..\WPNinjas.AADDeviceAuthentication.Common\WPNinjas.AADDeviceAuthentication.Common.csproj" />
-    <ProjectReference Include="..\WPNinjas.AADDeviceAuthentication.Server\WPNinjas.AADDeviceAuthentication.Server.csproj" />
+    <ProjectReference Include="..\WPNinjas.AADDeviceAuthentication\WPNinjas.AADDeviceAuthentication.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,7 +6,7 @@ using System.Text;
 using WPNinjas.AADDeviceAuthentication.Common;
 using WPNinjas.Dsregcmd;
 
-namespace WPNinjas.AADDeviceAuthentication
+namespace WPNinjas.AADDeviceAuthentication.Client
 {
     public class AADDeviceAuthClient
     {

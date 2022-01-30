@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPNinjas.AADDeviceAuthentication.Server", "WPNinjas.AADDeviceAuthentication.Server\WPNinjas.AADDeviceAuthentication.Server.csproj", "{FED04ABF-85EF-4158-80A4-D02F6BE16F86}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPNinjas.AADDeviceAuthentication.Client", "WPNinjas.AADDeviceAuthentication.Client\WPNinjas.AADDeviceAuthentication.Client.csproj", "{65F94C17-6BF3-4482-8A6E-70E0800100B6}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPNinjas.AADDeviceAuthentication.Common", "WPNinjas.AADDeviceAuthentication.Common\WPNinjas.AADDeviceAuthentication.Common.csproj", "{DACF0610-0260-4574-94FB-1CD51504A057}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPNinjas.AADDeviceAuthentication.Test", "WPNinjas.AADDeviceAuthentication.Test\WPNinjas.AADDeviceAuthentication.Test.csproj", "{C5A96FC6-87E5-42E9-B58B-24B102074902}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPNinjas.AADDeviceAuthentication", "WPNinjas.AADDeviceAuthentication\WPNinjas.AADDeviceAuthentication.csproj", "{074AD5DB-705E-41E7-B480-841D95A16811}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPNinjas.AADDeviceAuthentication.Examples", "WPNinjas.AADDeviceAuthentication.Examples\WPNinjas.AADDeviceAuthentication.Examples.csproj", "{51682523-FF3D-4FE4-A3F5-4864E1894E12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,22 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FED04ABF-85EF-4158-80A4-D02F6BE16F86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FED04ABF-85EF-4158-80A4-D02F6BE16F86}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FED04ABF-85EF-4158-80A4-D02F6BE16F86}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FED04ABF-85EF-4158-80A4-D02F6BE16F86}.Release|Any CPU.Build.0 = Release|Any CPU
-		{65F94C17-6BF3-4482-8A6E-70E0800100B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65F94C17-6BF3-4482-8A6E-70E0800100B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65F94C17-6BF3-4482-8A6E-70E0800100B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65F94C17-6BF3-4482-8A6E-70E0800100B6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DACF0610-0260-4574-94FB-1CD51504A057}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DACF0610-0260-4574-94FB-1CD51504A057}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DACF0610-0260-4574-94FB-1CD51504A057}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DACF0610-0260-4574-94FB-1CD51504A057}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C5A96FC6-87E5-42E9-B58B-24B102074902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C5A96FC6-87E5-42E9-B58B-24B102074902}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5A96FC6-87E5-42E9-B58B-24B102074902}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5A96FC6-87E5-42E9-B58B-24B102074902}.Release|Any CPU.Build.0 = Release|Any CPU
+		{074AD5DB-705E-41E7-B480-841D95A16811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{074AD5DB-705E-41E7-B480-841D95A16811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{074AD5DB-705E-41E7-B480-841D95A16811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{074AD5DB-705E-41E7-B480-841D95A16811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51682523-FF3D-4FE4-A3F5-4864E1894E12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51682523-FF3D-4FE4-A3F5-4864E1894E12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51682523-FF3D-4FE4-A3F5-4864E1894E12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51682523-FF3D-4FE4-A3F5-4864E1894E12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

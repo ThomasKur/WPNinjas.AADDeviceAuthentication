@@ -10,6 +10,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Graph;
 using WPNinjas.AADDeviceAuthentication.Server;
 using Moq;
+using WPNinjas.AADDeviceAuthentication.Client;
 
 namespace WPNinjas.AADDeviceAuthentication.Tests
 {
@@ -75,10 +76,16 @@ namespace WPNinjas.AADDeviceAuthentication.Tests
 
             Assert.AreEqual(token.Content, "Test123");
             Assert.AreEqual(token.DeviceId, guid);
-            var result = server.Authenticate(token);
-            result.Wait();
+            try
+            {
+                var result = server.Authenticate(token);
+                result.Wait();
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual(e.Message, "One or more errors occurred. (Verification with Azure AD records failed)");
+            }
 
-            Assert.IsFalse(result.Result);
         }
 
     }
