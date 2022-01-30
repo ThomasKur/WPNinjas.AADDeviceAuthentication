@@ -10,7 +10,7 @@ namespace WPNinjas.AADDeviceAuthentication.Common
         public string Signature { get; set; }
         public Guid DeviceId { get; set; }
         public string CertThumbprint { get; set; }
-
+        public string Content { get; set; }
 
     }
 }

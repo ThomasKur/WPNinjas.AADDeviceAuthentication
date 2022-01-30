@@ -30,10 +30,10 @@ namespace WPNinjas.AADDeviceAuthentication.Common
 
         public static bool Verify(byte[] publicKeyBytes, string thumbprint, string azureADSecurityId, string content, string signature)
         {
-            SHA256Managed sha1 = new SHA256Managed();
+            
             // Verifiy cert
-            azureADSecurityId = Base64StringDecodeUnicode(azureADSecurityId);
-            string verifyValue = "X509:<SHA1-TP-PUBKEY>" + thumbprint + Base64StringEncode(sha1.ComputeHash(publicKeyBytes));
+            //azureADSecurityId = Base64StringDecodeUnicode(azureADSecurityId);
+            string verifyValue = GetVerifyValue(publicKeyBytes, thumbprint);
             if (!azureADSecurityId.Equals(verifyValue))
             {
                 throw new Exception("Verification with Azure AD records failed");
@@ -54,6 +54,14 @@ namespace WPNinjas.AADDeviceAuthentication.Common
 
             return Verify(rsa, content, signature);
         }
+
+        public static string GetVerifyValue(byte[] publicKeyBytes, string thumbprint)
+        {
+            SHA256Managed sha1 = new SHA256Managed();
+            return "X509:<SHA1-TP-PUBKEY>" + thumbprint + Base64StringEncode(sha1.ComputeHash(publicKeyBytes));
+        }
+        
+        
 
         public static string Encrypt(string textToEncrypt, RSA publicKey){
             UnicodeEncoding encoding = new UnicodeEncoding();
